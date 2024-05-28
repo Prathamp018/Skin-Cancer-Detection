@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Make it compatible with mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Cancer Lesion Classifier</title>
+
+    <style>
+        body {
+            background: #F0F0F0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            height: 100vh; /* 100% of viewport height */
+            font-family: Arial, sans-serif;
+        }
+
+        h2 {
+            color: #4287f5; /* Dark blue */
+            font-size: 24px;
+            margin: 0;
+        }
+
+        h4 {
+            color: #4287f5; /* Dark blue */
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        form {
+            background: #FFFFFF; /* White */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        input[type="file"] {
+            color: #4287f5; /* Dark blue */
+            padding: 10px;
+            border: 2px solid #4287f5; /* Dark blue */
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background: #4287f5; /* Dark blue */
+            color: #FFFFFF; /* White */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        p.messages {
+            margin-top: 20px;
+        }
+
+        h3.diagnosis {
+            color: #5fa02d; /* Green */
+            font-size: 20px;
+            margin: 0;
+        }
+
+        img.diagnosis-image {
+            width: 300px;
+            height: auto;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h2>Skin Cancer Detection Using Machine Learning</h2>
+    <h4>Upload an image and click submit</h4>
+
+    <form method="post" action="/" enctype="multipart/form-data">
+        <p>
+            <input type="file" name="file" autocomplete="off" required>
+        </p>
+        <p>
+            <input type="submit" name="submit" value="Submit">
+        </p>
+    </form>
+
+    <p class="messages">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        Diagnosis for the following image is: <u><h3 class="diagnosis">{{ messages[0] }}</h3></u><br>
+        <img class="diagnosis-image" src="{{ messages[1] }}" alt="Skin Lesion">
+        {% endif %}
+        {% endwith %}
+    </p>
+
+</body>
+
+</html>
